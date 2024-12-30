@@ -32,6 +32,7 @@ async function DashboardLayout({ children }: IDashboardLayoutProps) {
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
               <Link href="/" className="flex items-center gap-2">
+                {/* TODO переиспользовать TitleWithLogo, добавив разные размеры */}
                 <Image src={Logo} alt="Logo" className="size-8" />
                 <p className="text-xl font-semibold">
                   <span className="text-primary">Ax</span>MeetWise
