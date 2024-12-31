@@ -17,6 +17,25 @@ import { ThemeToggle } from '../components/theme/ThemeToggle'
 import { Menu } from 'lucide-react'
 import { signOut } from '@/lib/auth'
 import requireUser from '@/lib/hooks'
+import prisma from '@/lib/db'
+import { redirect } from 'next/navigation'
+
+async function getData(userId?: string) {
+  const data = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      userName: true,
+    },
+  })
+
+  if (!data?.userName) {
+    return redirect('/onboarding')
+  }
+
+  return data
+}
 
 interface IDashboardLayoutProps {
   children?: ReactNode
@@ -24,6 +43,7 @@ interface IDashboardLayoutProps {
 
 async function DashboardLayout({ children }: IDashboardLayoutProps) {
   const session = await requireUser()
+  const data = await getData(session.user?.id)
 
   return (
     <>
