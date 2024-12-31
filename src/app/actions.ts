@@ -33,5 +33,5 @@ export async function onboardingAction(prevState: SubmissionResult<string[]> | u
     data: { userName: submission.value.userName, name: submission.value.fullName },
   })
 
-  return redirect('/dashboard')
+  return redirect('/onboarding/grant-id')
 }
