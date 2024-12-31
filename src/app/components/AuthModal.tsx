@@ -2,7 +2,8 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
 import { TitleWithLogo } from './TitleWithLogo'
 import { signIn } from '@/lib/auth'
-import { SignInButton } from './SignInButton'
+import Image from 'next/image'
+import { SubmitButton } from './SubmitButton'
 import GithubLogo from '@/../public/github.svg'
 import GoogleLogo from '@/../public/google.svg'
 
@@ -23,14 +24,22 @@ export function AuthModal() {
               'use server'
               await signIn('google')
             }}>
-            <SignInButton title={'google'} logo={GoogleLogo} />
+            <SubmitButton
+              text={'Sign in with Google'}
+              image={<Image src={GoogleLogo} className="size-4 mr-2 dark:invert" alt={'Google Logo'} />}
+              variant="outline"
+            />
           </form>
           <form
             action={async () => {
               'use server'
               await signIn('google')
             }}>
-            <SignInButton title={'github'} logo={GithubLogo} />
+            <SubmitButton
+              text={'Sign in with Github'}
+              image={<Image src={GithubLogo} className="size-4 mr-2 dark:invert" alt={'Github Logo'} />}
+              variant="outline"
+            />
           </form>
         </div>
       </DialogContent>
