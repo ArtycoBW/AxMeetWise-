@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useActionState, useState } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useForm } from '@conform-to/react'
 import { parseWithZod } from '@conform-to/zod'
-import { useFormState } from 'react-dom'
 import { SubmitButton } from '../components/SubmitButton'
 import Image from 'next/image'
 import { X } from 'lucide-react'
@@ -23,7 +22,7 @@ interface ISettingsFormProps {
 }
 
 export function SettingsForm({ fullName, email, profileImage }: ISettingsFormProps) {
-  const [lastResult, action] = useFormState(settingsAction, undefined)
+  const [lastResult, action] = useActionState(settingsAction, undefined)
   const [currentProfileImage, setCurrentProfileImage] = useState(profileImage)
 
   const [form, fields] = useForm({
