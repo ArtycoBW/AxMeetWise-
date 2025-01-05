@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { EmptyState } from '../components/dashboard/EmptyState'
 import { Switch } from '@/components/ui/switch'
+import { isEmpty } from 'lodash'
 
 async function getData(userId?: string) {
   const data = await prisma.user.findUnique({
@@ -57,7 +58,7 @@ export default async function DashboardPage() {
           <Link href="/dashboard/new">Create New Event</Link>
         </Button>
       </div>
-      {data.eventType.length === 0 ? (
+      {isEmpty(data.eventType) ? (
         <EmptyState
           title="You have no Event Types"
           description="You can create your first event type by clicking the button below."
