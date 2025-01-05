@@ -1,4 +1,6 @@
+import { createMeetingAction } from '@/app/actions'
 import { RenderCalendar } from '@/app/components/bookingForm/RenderCalendar'
+import TimeTable from '@/app/components/bookingForm/TimeTable'
 import { SubmitButton } from '@/app/components/SubmitButton'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -108,12 +110,13 @@ const BookingPage = async ({ params, searchParams }: IBookingPageProps) => {
             </div>
             <Separator orientation="vertical" className="hidden md:block h-full w-[1px]" />
 
-            <form className="flex flex-col gap-y-4">
+            <form className="flex flex-col gap-y-4" action={createMeetingAction}>
               <input type="hidden" name="eventTypeId" value={eventType.id} />
               <input type="hidden" name="username" value={username} />
               <input type="hidden" name="fromTime" value={time} />
               <input type="hidden" name="eventDate" value={date} />
               <input type="hidden" name="meetingLength" value={eventType.duration} />
+              <input type="hidden" name="provider" value={eventType.videoCallSoftware} />
               <div className="flex flex-col gap-y-1">
                 <Label>Your Name</Label>
                 <Input name="name" placeholder="Your Name" />
@@ -165,6 +168,8 @@ const BookingPage = async ({ params, searchParams }: IBookingPageProps) => {
             </div>
 
             <Separator orientation="vertical" className="hidden md:block h-full w-[1px]" />
+
+            <TimeTable selectedDate={selectedDate} userName={username} meetingDuration={eventType.duration} />
           </CardContent>
         </Card>
       )}
