@@ -10,12 +10,13 @@ import {
 } from '@/components/ui/dropdown-menu'
 import prisma from '@/lib/db'
 import requireUser from '@/lib/hooks'
-import { ExternalLink, Link2, Pen, Settings, Trash, Users2 } from 'lucide-react'
+import { ExternalLink, Pen, Settings, Trash, Users2 } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { EmptyState } from '../components/dashboard/EmptyState'
-import { Switch } from '@/components/ui/switch'
 import { isEmpty } from 'lodash'
+import { CopyLinkMenuItem } from '../components/dashboard/CopyLinkMenuItem'
+import { EventTypeSwitcher } from '../components/dashboard/EventTypeSwitcher'
 
 async function getData(userId?: string) {
   const data = await prisma.user.findUnique({
@@ -86,13 +87,7 @@ export default async function DashboardPage() {
                           <span>Preview</span>
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        {/* будет доделано позднее */}
-                        <span>
-                          <Link2 className="mr-2 h-4 w-4" />
-                          Copy
-                        </span>
-                      </DropdownMenuItem>
+                      <CopyLinkMenuItem meetingUrl={`${process.env.NEXT_PUBLIC_URL}/${data.userName}/${item.url}`} />
                       <DropdownMenuItem asChild>
                         <Link href={`/dashboard/event/${item.id}`}>
                           <Pen className="mr-2 h-4 w-4" />
@@ -129,7 +124,7 @@ export default async function DashboardPage() {
                 </div>
               </Link>
               <div className="bg-muted dark:bg-gray-900 px-5 py-3 flex justify-between items-center">
-                <Switch />
+                <EventTypeSwitcher eventTypeId={item.id} initialChecked={item.active} />
 
                 <Link href={`/dashboard/event/${item.id}`}>
                   <Button className="">Edit Event</Button>
