@@ -1,6 +1,8 @@
-import Navbar from '@/app/components/Navbar'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
+import Navbar from './components/homePage/Navbar'
+import { Hero } from './components/homePage/Hero'
+import { Features } from './components/homePage/Features'
 
 export default async function Home() {
   const session = await auth()
@@ -12,6 +14,8 @@ export default async function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <Navbar />
+      <Hero />
+      <Features />
     </div>
   )
 }

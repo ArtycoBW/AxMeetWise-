@@ -9,7 +9,7 @@ import { times } from '@/lib/times'
 import { SubmitButton } from '@/app/components/SubmitButton'
 import { updateAvailabilityAction } from '@/app/actions'
 
-async function getData(userId: string) {
+async function getData(userId?: string) {
   const data = await prisma.availability.findMany({
     where: {
       userId: userId,
@@ -27,7 +27,7 @@ async function getData(userId: string) {
 
 const AvailabilityPage = async () => {
   const session = await requireUser()
-  const data = await getData(session.user?.id as string)
+  const data = await getData(session.user?.id)
 
   return (
     <Card>
@@ -76,7 +76,7 @@ const AvailabilityPage = async () => {
           ))}
         </CardContent>
         <CardFooter>
-          <SubmitButton text="Save Changes" />
+          <SubmitButton text="Save Changes" className="w-fit ml-auto" />
         </CardFooter>
       </form>
     </Card>

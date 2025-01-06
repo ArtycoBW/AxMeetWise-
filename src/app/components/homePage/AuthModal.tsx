@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
-import { TitleWithLogo } from './TitleWithLogo'
+import { TitleWithLogo } from '../TitleWithLogo'
 import { signIn } from '@/lib/auth'
 import Image from 'next/image'
-import { SubmitButton } from './SubmitButton'
+import { SubmitButton } from '../SubmitButton'
 import GithubLogo from '@/../public/github.svg'
 import GoogleLogo from '@/../public/google.svg'
 
