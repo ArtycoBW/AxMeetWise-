@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { AuthModal } from './AuthModal'
-import { TitleWithLogo } from './TitleWithLogo'
+import { TitleWithLogo } from '../TitleWithLogo'
+import { ThemeToggle } from '../theme/ThemeToggle'
 
 export default function Navbar() {
   return (
@@ -9,7 +10,11 @@ export default function Navbar() {
         <TitleWithLogo />
       </Link>
 
-      <AuthModal />
+      <nav className="hidden md:flex md:justify-end md:space-x-4">
+        <ThemeToggle />
+
+        <AuthModal />
+      </nav>
     </div>
   )
 }

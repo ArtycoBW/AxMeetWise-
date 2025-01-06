@@ -53,14 +53,14 @@ export function SettingsForm({ fullName, email, profileImage }: ISettingsFormPro
             <Input
               name={fields.fullName.name}
               key={fields.fullName.key}
-              placeholder="Jan Marshall"
+              placeholder="Your Name"
               defaultValue={fullName}
             />
             <p className="text-red-500 text-sm">{fields.fullName.errors}</p>
           </div>
           <div className="flex flex-col gap-y-2">
             <Label>Email</Label>
-            <Input disabled placeholder="Jan Marshall" defaultValue={email} />
+            <Input disabled placeholder="Your Name" defaultValue={email} />
           </div>
 
           <div className="grid gap-y-5">
@@ -108,7 +108,7 @@ export function SettingsForm({ fullName, email, profileImage }: ISettingsFormPro
           </div>
         </CardContent>
         <CardFooter>
-          <SubmitButton text="Save Changes" />
+          <SubmitButton text="Save Changes" className="w-fit ml-auto" />
         </CardFooter>
       </form>
     </Card>
